@@ -53,22 +53,55 @@ class Queue:
         if self.head == self.max:
             self.head = 0
         return x
-        
-def usingQueue():
+
+
+def test2():
+    ###Your code here.
+    # Check if q is empty
     q = Queue(2)
-    print q.empty() #True
-    print q.full() #False
-    print q.enqueue(6) #True
-    print q.enqueue(7) #True
-    print q.full() #True
-    print q.enqueue(8) #False
-    print q.full() #True
-    print q.dequeue() #6
-    print q.dequeue() #7
-    print q.dequeue() #None
-    print q.empty() #True
+    res = q.dequeue()
+    if (res != None):
+        print "test 2 NOT OK (dequeue when empty)" 
+        return
+    res = q.enqueue(7)
+    if not res:
+        print "test2 NOT OK"
+        return
+    res = q.enqueue(8)
+    if not res:
+        print "test2 NOT OK"
+        return
+    res = q.dequeue()
+    if q.head != 1:
+        print "test2 NOT OK"
+        return
+    res = q.dequeue()
+    if q.head != 0:
+        print "test2 NOT OK"
+        return
+    print "test2 OK"
     
-usingQueue()
+
+def test3():
+    ###Your code here.
+    # Check if queue is full
+    q = Queue(2)
+    res = q.enqueue(7)
+    if not res:
+        print "test3 NOT OK"
+        return
+    res = q.enqueue(8)
+    if not res:
+        print "test3 NOT OK"
+        return
+    res = q.enqueue(9)
+    if res:
+        print "test3 NOT OK (should be full)"
+        return
+    if q.tail != 0 and q.size == q.max:
+        print "test3 NOT OK (tail should be 0)"
+    print "test3 OK"
+
 
 def test1():
     q = Queue(3)
@@ -98,27 +131,6 @@ def test1():
         return
     print "test1 OK"
 
-def test2():
-    ###Your code here.
-    # Test dequeue with nothing in it
-    q = Queue(2)
-    if q.dequeue() != None:
-        print "test1 NOT OK"
-        return
-
-def test3():
-    ###Your code here.
-    # Test full enqueue
-    q = Queue(2)
-    if q.enqueue(5) != True:
-        print "test1 NOT OK"
-        return
-    if q.enqueue(6) != True:
-        print "test1 NOT OK"
-        return
-    if q.enqueue(7) != False:
-        print "test1 NOT OK"
-        return
 test1()
 test2()
 test3() 
